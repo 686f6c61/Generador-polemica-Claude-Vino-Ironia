@@ -1,0 +1,198 @@
+/* Estilos generales del body con patrón de fondo personalizado */
+body {
+    background-color: #f5f5f5;
+    /* SVG pattern para el fondo con opacidad reducida */
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff3860' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Estilo del hero con gradiente personalizado */
+.hero.is-danger.is-bold {
+    background-image: linear-gradient(141deg, #ff0561 0%, #ff3860 71%, #ff5257 100%);
+}
+
+/* Animaciones y efectos hover para botones */
+.button.is-danger.is-light {
+    transition: all 0.3s ease;
+}
+
+.button.is-danger.is-light:hover {
+    transform: scale(1.05);
+}
+
+/* Efectos hover para mensajes */
+.message {
+    transition: all 0.3s ease;
+}
+
+.message:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilos del footer */
+.footer {
+    background-color: #fff;
+    border-top: 1px solid #f5f5f5;
+}
+
+/* Animación de entrada para los boxes */
+.box {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Keyframes para la animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el formulario horizontal */
+.field.is-horizontal {
+    margin-bottom: 1.5rem;
+    justify-content: flex-start;
+    max-width: 800px;
+    margin-left: 0;
+}
+
+/* Configuración de las etiquetas del formulario */
+.field-label {
+    flex-basis: 220px;
+    text-align: left;
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+}
+
+/* Ajustes del cuerpo del formulario */
+.field-body {
+    flex-grow: 0 !important;
+    width: auto !important;
+    margin-left: 0;
+}
+
+/* Ajustes específicos para campos del formulario */
+.field-body .field {
+    width: auto !important;
+}
+
+.field-body .input {
+    width: 200px !important;
+    max-width: 200px !important;
+}
+
+/* Estilos para los selects del formulario */
+.field-body .select,
+.field-body .select select {
+    width: 200px !important;
+    max-width: 200px !important;
+}
+
+.select.is-fullwidth {
+    width: 200px !important;
+}
+
+.select.is-fullwidth select {
+    width: 200px !important;
+}
+
+/* Ajustes generales del formulario */
+form {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.container form {
+    margin: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Estilos de las etiquetas del formulario */
+.field-label .label {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    color: #363636 !important;
+}
+
+/* Configuración del modal */
+.modal-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos del encabezado del modal */
+.modal-card-head {
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.modal-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #363636;
+}
+
+/* Estilos del cuerpo del modal */
+.modal-card-body {
+    padding: 1.5rem;
+    background-color: white;
+    overflow: auto;
+}
+
+.content {
+    height: auto;
+    overflow: visible;
+}
+
+/* Estilos para bloques de código */
+pre {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #363636;
+}
+
+/* Estilos específicos para el texto del prompt */
+.prompt-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #363636;
+    background-color: #f5f5f5;
+    padding: 1.25rem;
+    border-radius: 6px;
+    margin: 0;
+    white-space: pre-wrap;
+    overflow: visible;
+}
+
+/* Resaltado de variables en el prompt */
+.prompt-text [tema],
+.prompt-text [posición] {
+    color: #ff3860;
+    font-weight: bold;
+}
+
+/* Ocultar scrollbars pero mantener funcionalidad */
+.modal-card-body::-webkit-scrollbar,
+.prompt-text::-webkit-scrollbar {
+    display: none;
+}

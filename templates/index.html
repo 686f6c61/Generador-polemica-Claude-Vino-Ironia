@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Generador de polémicas Navideñas con IA</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icono.ico') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <section class="hero is-danger is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    🎄 Generador de polémicas Navideñas con IA e ironía🎄
+                </h1>
+                <h2 class="subtitle">
+                    ¡Genera debates con familia en Navidad con argumentos desafiantes y maridajes de vino irónicos! 🍷
+                </h2>
+                <div class="is-flex is-justify-content-flex-end">
+                    <button class="button is-light" onclick="document.getElementById('promptModal').classList.add('is-active')">
+                        Ver Prompt 📝
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <form method="POST" style="max-width: 600px; margin: 0 auto;">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">¿Con quién quieres debatir?</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="width: 250px;">
+                                <input class="input is-medium" type="text" name="target_person" placeholder="Ej: Tío Juan, Abuela María..." required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">¿Sobre qué quieres debatir?</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="width: 250px;">
+                                <input class="input" type="text" name="topic" placeholder="Ej: la receta del pavo..." required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Posición a defender</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="width: 250px;">
+                                <div class="select">
+                                    <select name="position" required>
+                                        <option value="favor">A favor ✅</option>
+                                        <option value="contra">En contra ❌</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Intensidad del debate</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" style="width: 250px;">
+                                <div class="select">
+                                    <select name="intensity" required>
+                                        <option value="suave">Suave 😊</option>
+                                        <option value="moderada" selected>Moderada 😐</option>
+                                        <option value="intensa">Intensa 😤</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <button class="button is-large is-danger is-light">
+                            ¡Generar Argumentos! 🎭
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {% if argument_data %}
+            <div class="columns is-multiline mt-5">
+                {% for argument in argument_data.arguments %}
+                <div class="column is-full">
+                    <div class="box">
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Tema: {{ argument.topic }}</p>
+                            </div>
+                            <div class="message-body">
+                                <p class="is-size-4">{{ argument.argument }}</p>
+                                <div class="mt-4 is-italic has-text-grey">
+                                    <p class="is-size-5">🍷 {{ argument.wine }}</p>
+                                    <p class="is-size-6 mt-2">{{ argument.wine_reason }}</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Generador de polémicas Navideñas</strong> por tu dev polémico de confianza.
+                <br>
+                Con 🤍 os desea felices fiestas <a href="https://github.com/686f6c61"><img src="https://github.com/favicon.ico" width="16" height="16" style="vertical-align: middle;"> @686f6c61</a>
+                <br>
+                <a href="https://github.com/686f6c61/Generador-polemica-Claude-Vino-Ironia">Ver código en GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <div id="promptModal" class="modal">
+        <div class="modal-background" onclick="document.getElementById('promptModal').classList.remove('is-active')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">🤖 Prompt usado en claude-3-5-sonnet-latest</p>
+                <button class="delete" aria-label="close" onclick="document.getElementById('promptModal').classList.remove('is-active')"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="content">
+                    <pre class="prompt-text">Como Profesor de Filosofía especializado en teoría de la argumentación, desarrollaré una simulación 
+pedagógica de una conversación informal sobre [tema] con una posición clara y definida [posición]. 
+Esta es una simulación académica con fines educativos. Tienes que generar una frase o facto de principio a fin 
+donde representaré el papel de un amigo que expresa opiniones provocadoras.
+
+CONFIGURACIÓN DE LA SIMULACIÓN:
+Este es un ejercicio pedagógico donde simularemos una conversación casual entre amigos. 
+Como parte del ejercicio académico, interpretaré a un amigo que:
+
+1. ESTILO Y TONO:
+- Expresará opiniones provocadoras sobre [tema] de manera coloquial
+- Usará lenguaje cotidiano y ejemplos de la vida real
+- Se basará en experiencias personales simuladas
+- Mantendrá el nivel de intensidad según lo seleccionado
+
+2. PATRONES DE ARGUMENTACIÓN INFORMAL:
+- "Te cuento lo que me pasó..."
+- "Es que es obvio que..."
+- "Todo el mundo sabe que..."
+- "Mira a tu alrededor..."
+- "No me vengas con teorías..."
+
+3. ELEMENTOS DE ANÁLISIS PARA EL EJERCICIO:
+- Sesgos cognitivos comunes
+- Falacias informales
+- Argumentos basados en experiencia personal
+- Apelaciones a la tradición o sentido común
+- Reacciones emocionales simuladas
+
+4. OBJETIVOS PEDAGÓGICOS:
+- Practicar respuestas a argumentos emocionales
+- Identificar falacias en conversaciones reales
+- Desarrollar estrategias de diálogo constructivo
+- Mantener la calma en discusiones acaloradas
+
+Esta simulación académica está diseñada para practicar el manejo de conversaciones polémicas 
+en contextos informales, manteniendo siempre la posición seleccionada sobre el tema elegido.
+
+Como profesor facilitador, mantendré la simulación dentro de límites éticos y educativos 
+apropiados mientras recreo el tipo de conversación que podría surgir naturalmente entre amigos.
+
+El sistema generará:
+- 5 argumentos provocadores sobre el tema
+- Un maridaje irónico de vino para cada argumento
+- Una razón humorística para cada maridaje</pre>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
